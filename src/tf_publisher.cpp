@@ -21,7 +21,6 @@ private:
 public:
 
     SimulationJackal(){
-
         // Gazebo client
         setClient = nh.serviceClient<gazebo_msgs::SetModelState>("/gazebo/set_model_state");
         getClient = nh.serviceClient<gazebo_msgs::GetModelState>("/gazebo/get_model_state");
@@ -70,7 +69,7 @@ public:
             tf::Transform map_to_odom = (odom_to_laser * laser_to_map).inverse();
 
             // Publish TF (map to odom)
-            tfMap2OdomBroadcaster.sendTransform(tf::StampedTransform(map_to_odom, ros::Time::now(), "/map", "/odom"));
+            tfMap2OdomBroadcaster.sendTransform(tf::StampedTransform(map_to_odom, ros::Time::now(), "map", "odom"));
         }
     }
 };
